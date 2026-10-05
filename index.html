@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="fi">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="description"
+      content="Sivut, jotka jäävät mieleen. Dream Design tekee verkkosivut pienyrityksille."
+    />
+    <meta name="theme-color" content="#f3eee4" />
+    <title>Dream Design — Verkkosivut pienyrityksille</title>
+    <link rel="icon" href="favicon.svg" type="image/svg+xml" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,500&family=Sora:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="css/styles.css" />
+  </head>
+  <body>
+    <a class="skip" href="#content" data-i18n="skip">Siirry sisältöön</a>
+    <p id="lang-status" class="visually-hidden" aria-live="polite"></p>
+
+    <header class="site-header">
+      <a class="logo" href="#home">
+        <svg viewBox="0 0 32 32" aria-hidden="true">
+          <rect width="32" height="32" rx="8" fill="currentColor" />
+          <path fill="#f3eee4" fill-rule="evenodd" d="M8 7.4h7.2c4.5 0 7.5 3 7.5 8.6s-3 8.6-7.5 8.6H8V7.4zm3.2 3.1v11h3.7c2.6 0 4.3-1.7 4.3-5.5s-1.7-5.5-4.3-5.5h-3.7z" />
+          <path fill="#c45c26" d="M25.1 6.3l.5 1.15 1.15.5-1.15.5-.5 1.15-.5-1.15-1.15-.5 1.15-.5z" />
+        </svg>
+        <span data-brand>Dream Design</span>
+      </a>
+
+      <nav id="nav" class="nav" data-i18n-aria="navLabel" aria-label="Päävalikko">
+        <a href="#steps" data-i18n="navSteps">Työ</a>
+        <a href="#contact" data-i18n="navContact">Yhteys</a>
+      </nav>
+
+      <div class="header-end">
+        <div class="lang" role="group" data-i18n-aria="langLabel" aria-label="Kieli">
+          <button type="button" data-lang="fi" aria-pressed="true">FI</button>
+          <button type="button" data-lang="en" aria-pressed="false">EN</button>
+        </div>
+        <button
+          class="menu-toggle"
+          type="button"
+          aria-expanded="false"
+          aria-controls="nav"
+          data-i18n-aria="menuOpen"
+          aria-label="Avaa valikko"
+        >
+          <span></span>
+          <span></span>
+        </button>
+      </div>
+    </header>
+
+    <main id="content">
+      <section class="hero" id="home">
+        <div class="container">
+          <h1>
+            <span data-i18n="heroTitleA">Sivut, jotka</span>
+            <em data-i18n="heroTitleB">jäävät mieleen.</em>
+          </h1>
+          <div class="hero-actions">
+            <a class="button" href="#contact" data-i18n="ctaPrimary">Ottakaa yhteyttä</a>
+          </div>
+        </div>
+      </section>
+
+      <section class="band" id="steps">
+        <div class="container">
+          <h2 class="visually-hidden" data-i18n="stepsTitle">Työ</h2>
+          <ol class="steps">
+            <li>
+              <span>01</span>
+              <h3 data-i18n="step1">Ottakaa yhteyttä</h3>
+            </li>
+            <li>
+              <span>02</span>
+              <h3 data-i18n="step2">Käymme yhdessä läpi, millainen sivusto sopii yrityksellenne</h3>
+            </li>
+            <li>
+              <span>03</span>
+              <h3 data-i18n="step3">Toteutan sivut valmiiksi</h3>
+            </li>
+            <li>
+              <span>04</span>
+              <h3 data-i18n="step4">Julkaisemme sivuston</h3>
+            </li>
+            <li>
+              <span>05</span>
+              <h3 data-i18n="step5">Teemme tarvittavat korjaukset</h3>
+            </li>
+            <li>
+              <span>06</span>
+              <h3 data-i18n="step6">Ylläpito sovitaan toiveidenne mukaan</h3>
+            </li>
+          </ol>
+        </div>
+      </section>
+
+      <section class="section contact-section" id="contact">
+        <div class="container contact-grid">
+          <div>
+            <p class="kicker" data-i18n="contactKicker">Yhteys</p>
+            <h2 data-i18n="contactTitle">Ottakaa yhteyttä.</h2>
+            <p class="lead" data-i18n="contactLead">
+              Kertokaa lyhyesti, millaisen sivuston yrityksenne tarvitsee.
+            </p>
+            <p class="email-line">
+              <span data-i18n="contactEmailLabel">Tai suoraan sähköpostilla</span>
+              <a data-email href="mailto:ddreamdesign@icloud.com">ddreamdesign@icloud.com</a>
+            </p>
+          </div>
+
+          <form id="contact-form" novalidate>
+            <label>
+              <span data-i18n="formName">Nimi</span>
+              <input name="name" type="text" autocomplete="name" required />
+            </label>
+            <label>
+              <span data-i18n="formEmail">Sähköposti</span>
+              <input name="email" type="email" autocomplete="email" required />
+            </label>
+            <label>
+              <span data-i18n="formCompany">Yritys</span>
+              <input name="company" type="text" autocomplete="organization" />
+            </label>
+            <label>
+              <span data-i18n="formMessage">Millaisen sivuston tarvitsette?</span>
+              <textarea name="message" required></textarea>
+            </label>
+            <button class="button" type="submit" data-i18n="formSend">Lähetä viesti</button>
+            <p class="form-note" data-i18n="formNote">Viesti avautuu sähköpostiohjelmaan.</p>
+            <p id="form-status" role="status"></p>
+          </form>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container footer-grid">
+        <div>
+          <p class="logo-text" data-brand>Dream Design</p>
+          <p data-i18n="footerBlurb">Sivut, jotka jäävät mieleen.</p>
+          <p>dreamdesign.fi</p>
+        </div>
+        <p class="copyright">
+          <span>© <span data-year>2026</span> <span data-brand>Dream Design</span>.</span>
+          <span data-i18n="footerRights">Kaikki oikeudet pidätetään.</span>
+        </p>
+      </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+  </body>
+</html>
