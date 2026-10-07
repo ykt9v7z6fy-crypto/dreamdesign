@@ -8,7 +8,7 @@
       content="Sivut, jotka jäävät mieleen. DreamDesign tekee verkkosivut pienyrityksille."
     />
     <meta name="theme-color" content="#f3eee4" />
-    <title>DreamDesign — Verkkosivut pienyrityksille</title>
+    <title>Asiakkaiden sivut — DreamDesign</title>
     <link rel="icon" href="favicon.svg" type="image/svg+xml" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -18,12 +18,12 @@
     />
     <link rel="stylesheet" href="css/styles.css" />
   </head>
-  <body>
+  <body data-title-key="navClients">
     <a class="skip" href="#content" data-i18n="skip">Siirry sisältöön</a>
     <p id="lang-status" class="visually-hidden" aria-live="polite"></p>
 
     <header class="site-header">
-      <a class="logo" href="#home">
+      <a class="logo" href="index.html">
         <svg viewBox="0 0 32 32" aria-hidden="true">
           <rect width="32" height="32" rx="8" fill="currentColor" />
           <path fill="#ffffff" fill-rule="evenodd" d="M8.6 10.3h3a5.2 5.2 0 0 1 0 10.4h-3zm1.6 1.6h1.4a3.6 3.6 0 0 1 0 7.2h-1.4z" />
@@ -45,10 +45,10 @@
           </button>
           <div id="portfolio-menu" class="nav-menu" hidden>
             <a href="demo.html" data-i18n="navDemo">Demo sivut</a>
-            <a href="asiakkaat.html" data-i18n="navClients">Asiakkaiden sivut</a>
+            <a href="asiakkaat.html" data-i18n="navClients" aria-current="page">Asiakkaiden sivut</a>
           </div>
         </div>
-        <a href="#contact" data-i18n="navContact">Yhteys</a>
+        <a href="index.html#contact" data-i18n="navContact">Yhteys</a>
       </nav>
 
       <div class="header-end">
@@ -71,64 +71,9 @@
     </header>
 
     <main id="content">
-      <section class="hero" id="home">
+      <section class="page">
         <div class="container">
-          <h1>
-            <span data-i18n="heroTitleA">Sivut, jotka</span>
-            <em data-i18n="heroTitleB">jäävät mieleen.</em>
-          </h1>
-          <div class="hero-actions">
-            <a class="button" href="#contact" data-i18n="ctaPrimary">Ottakaa yhteyttä</a>
-          </div>
-        </div>
-      </section>
-
-      <section class="section" id="why">
-        <div class="container statement">
-          <p class="lead" data-i18n="whyText">
-            Yritykselle on ensisijaisen tärkeää, että verkkosivut ovat nykyaikaiset ja selkeät. Ne
-            ovat usein ensimmäinen kohtaaminen asiakkaan kanssa, ja sitä varten me olemme täällä
-            auttamassa.
-          </p>
-          <p class="promise" data-i18n="promise">Te päätätte. Me toteutamme.</p>
-        </div>
-      </section>
-
-      <section class="section contact-section" id="contact">
-        <div class="container contact-grid">
-          <div>
-            <p class="kicker" data-i18n="contactKicker">Yhteys</p>
-            <h2 data-i18n="contactTitle">Ottakaa yhteyttä.</h2>
-            <p class="lead" data-i18n="contactLead">
-              Kertokaa lyhyesti, millaisen sivuston yrityksenne tarvitsee.
-            </p>
-            <p class="email-line">
-              <span data-i18n="contactEmailLabel">Tai suoraan sähköpostilla</span>
-              <a data-email href="mailto:ddreamdesign@icloud.com">ddreamdesign@icloud.com</a>
-            </p>
-          </div>
-
-          <form id="contact-form" novalidate>
-            <label>
-              <span data-i18n="formName">Nimi</span>
-              <input name="name" type="text" autocomplete="name" required />
-            </label>
-            <label>
-              <span data-i18n="formEmail">Sähköposti</span>
-              <input name="email" type="email" autocomplete="email" required />
-            </label>
-            <label>
-              <span data-i18n="formCompany">Yritys</span>
-              <input name="company" type="text" autocomplete="organization" />
-            </label>
-            <label>
-              <span data-i18n="formMessage">Millaisen sivuston tarvitsette?</span>
-              <textarea name="message" required></textarea>
-            </label>
-            <button class="button" type="submit" data-i18n="formSend">Lähetä viesti</button>
-            <p class="form-note" data-i18n="formNote">Viesti avautuu sähköpostiohjelmaan.</p>
-            <p id="form-status" role="status"></p>
-          </form>
+          <h1 class="page-title" data-i18n="navClients">Asiakkaiden sivut</h1>
         </div>
       </section>
     </main>

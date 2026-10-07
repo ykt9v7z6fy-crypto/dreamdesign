@@ -1,30 +1,34 @@
 const site = {
-  name: "Dream Design",
+  name: "DreamDesign",
   email: "ddreamdesign@icloud.com",
 };
 
 const translations = {
   fi: {
-    metaTitle: "Dream Design — Verkkosivut pienyrityksille",
-    metaDescription: "Sivut, jotka jäävät mieleen. Dream Design tekee verkkosivut pienyrityksille.",
+    metaTitle: "DreamDesign — Verkkosivut pienyrityksille",
+    metaDescription: "Sivut, jotka jäävät mieleen. DreamDesign tekee verkkosivut pienyrityksille.",
     skip: "Siirry sisältöön",
     navLabel: "Päävalikko",
     langLabel: "Kieli",
     langChanged: "Sivu on nyt suomeksi.",
     menuOpen: "Avaa valikko",
     menuClose: "Sulje valikko",
-    navSteps: "Työ",
+    navPortfolio: "Portfolio",
+    navDemo: "Demo sivut",
+    navClients: "Asiakkaiden sivut",
     navContact: "Yhteys",
+    demoOpen: "Avaa demo",
+    newTab: "Avautuu uuteen välilehteen.",
+    auroraText: "Hotellisivusto järvenrantaan Savonlinnaan.",
+    leivonenText: "Kahvilasivusto Punavuoreen Helsinkiin.",
+    soleText: "Ravintolasivusto italialaiseen trattoriaan Bulevardille.",
+    kieloText: "Kauneushoitolan sivusto Punavuoreen Helsinkiin.",
     heroTitleA: "Sivut, jotka",
     heroTitleB: "jäävät mieleen.",
     ctaPrimary: "Ottakaa yhteyttä",
-    stepsTitle: "Työ",
-    step1: "Ottakaa yhteyttä",
-    step2: "Käymme yhdessä läpi, millainen sivusto sopii yrityksellenne",
-    step3: "Toteutan sivut valmiiksi",
-    step4: "Julkaisemme sivuston",
-    step5: "Teemme tarvittavat korjaukset",
-    step6: "Ylläpito sovitaan toiveidenne mukaan",
+    whyText:
+      "Yritykselle on ensisijaisen tärkeää, että verkkosivut ovat nykyaikaiset ja selkeät. Ne ovat usein ensimmäinen kohtaaminen asiakkaan kanssa, ja sitä varten me olemme täällä auttamassa.",
+    promise: "Te päätätte. Me toteutamme.",
     contactKicker: "Yhteys",
     contactTitle: "Ottakaa yhteyttä.",
     contactLead: "Kertokaa lyhyesti, millaisen sivuston yrityksenne tarvitsee.",
@@ -45,26 +49,30 @@ const translations = {
     mailCompany: "Yritys",
   },
   en: {
-    metaTitle: "Dream Design — Websites for small businesses",
-    metaDescription: "Sites that stay in mind. Dream Design makes websites for small businesses.",
+    metaTitle: "DreamDesign — Websites for small businesses",
+    metaDescription: "Sites that stay in mind. DreamDesign makes websites for small businesses.",
     skip: "Skip to content",
     navLabel: "Main menu",
     langLabel: "Language",
     langChanged: "The page is now in English.",
     menuOpen: "Open menu",
     menuClose: "Close menu",
-    navSteps: "Work",
+    navPortfolio: "Portfolio",
+    navDemo: "Demo sites",
+    navClients: "Client sites",
     navContact: "Contact",
+    demoOpen: "Open demo",
+    newTab: "Opens in a new tab.",
+    auroraText: "A hotel website for a lakeside stay in Savonlinna.",
+    leivonenText: "A café website for a bakery in Punavuori, Helsinki.",
+    soleText: "A restaurant website for an Italian trattoria on Bulevardi.",
+    kieloText: "A beauty salon website for a studio in Punavuori, Helsinki.",
     heroTitleA: "Sites that",
     heroTitleB: "stay in mind.",
     ctaPrimary: "Get in touch",
-    stepsTitle: "Work",
-    step1: "Get in touch",
-    step2: "We define the site that fits your business",
-    step3: "I deliver the finished site",
-    step4: "We publish the site",
-    step5: "We make any needed revisions",
-    step6: "Maintenance follows your preferences",
+    whyText:
+      "A modern, clear website is essential for a business. It is often the first meeting with a customer, and that is why we are here to help.",
+    promise: "You decide. We deliver.",
     contactKicker: "Contact",
     contactTitle: "Get in touch.",
     contactLead: "A short description of the site your business needs is enough.",
@@ -95,7 +103,8 @@ function currentLang() {
 function applyLanguage(lang, announce) {
   const dict = translations[lang];
   document.documentElement.lang = lang;
-  document.title = dict.metaTitle;
+  const titleKey = document.body.dataset.titleKey;
+  document.title = titleKey && dict[titleKey] ? `${dict[titleKey]} — ${site.name}` : dict.metaTitle;
 
   const meta = document.querySelector('meta[name="description"]');
   if (meta) meta.setAttribute("content", dict.metaDescription);
@@ -180,23 +189,52 @@ menuToggle?.addEventListener("click", () => {
   menuToggle.setAttribute("aria-label", open ? dict.menuClose : dict.menuOpen);
 });
 
+const portfolio = document.querySelector(".nav-drop");
+const portfolioButton = portfolio?.querySelector(".nav-toggle");
+const portfolioMenu = document.querySelector("#portfolio-menu");
+
+function setPortfolio(open) {
+  if (!portfolio || !portfolioButton || !portfolioMenu) return;
+  portfolio.classList.toggle("open", open);
+  portfolioButton.setAttribute("aria-expanded", open ? "true" : "false");
+  portfolioMenu.hidden = !open;
+}
+
+function closeMobileNav() {
+  header.classList.remove("open");
+  menuToggle?.setAttribute("aria-expanded", "false");
+  menuToggle?.setAttribute("aria-label", translations[currentLang()].menuOpen);
+}
+
+portfolioButton?.addEventListener("click", (event) => {
+  event.stopPropagation();
+  setPortfolio(portfolioButton.getAttribute("aria-expanded") !== "true");
+});
+
+document.addEventListener("click", (event) => {
+  if (!portfolio?.contains(event.target)) setPortfolio(false);
+});
+
 document.querySelectorAll(".nav a").forEach((link) => {
   link.addEventListener("click", () => {
-    header.classList.remove("open");
-    menuToggle?.setAttribute("aria-expanded", "false");
-    menuToggle?.setAttribute("aria-label", translations[currentLang()].menuOpen);
+    setPortfolio(false);
+    closeMobileNav();
   });
 });
 
 document.addEventListener("keydown", (event) => {
-  if (event.key !== "Escape" || !header.classList.contains("open")) return;
-  header.classList.remove("open");
-  menuToggle?.setAttribute("aria-expanded", "false");
-  menuToggle?.setAttribute("aria-label", translations[currentLang()].menuOpen);
+  if (event.key !== "Escape") return;
+  if (portfolio?.classList.contains("open")) {
+    setPortfolio(false);
+    portfolioButton?.focus();
+    return;
+  }
+  if (!header.classList.contains("open")) return;
+  closeMobileNav();
   menuToggle?.focus();
 });
 
-const navLinks = [...document.querySelectorAll(".nav a")];
+const navLinks = [...document.querySelectorAll(".nav a[href^='#']")];
 const sections = navLinks.map((link) => document.querySelector(link.getAttribute("href"))).filter(Boolean);
 
 if (sections.length && "IntersectionObserver" in window) {
@@ -212,6 +250,23 @@ if (sections.length && "IntersectionObserver" in window) {
     { rootMargin: "-45% 0px -45% 0px" }
   );
   sections.forEach((section) => observer.observe(section));
+}
+
+function fitDemoPreviews() {
+  document.querySelectorAll(".demo-preview").forEach((frame) => {
+    const iframe = frame.querySelector("iframe");
+    if (!iframe || !frame.clientWidth || !frame.clientHeight) return;
+    const baseWidth = 1280;
+    const scale = frame.clientWidth / baseWidth;
+    iframe.style.width = `${baseWidth}px`;
+    iframe.style.height = `${frame.clientHeight / scale}px`;
+    iframe.style.transform = `scale(${scale})`;
+  });
+}
+
+if (document.querySelector(".demo-preview")) {
+  fitDemoPreviews();
+  window.addEventListener("resize", fitDemoPreviews);
 }
 
 document.addEventListener("scroll", () => {
